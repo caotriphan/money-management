@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <section>
+    <section class="mb-2">
       <div class="bg-primary-subtle border container d-flex justify-content-around p-2 rounded-3">
         <div>
           <h3>My Wallet</h3>
@@ -20,9 +20,107 @@
       </div>
     </section>
 
-    <section class="container">
-      <div class=""></div>
-      <div></div>
+    <section class="container rounded-3 border border-danger">
+      <div class="row">
+        <div class="col-sm-8 border-end">
+          <div class="mb-5 mt-2">
+            <div class="mb-2">
+              <input type="text" placeholder="Enter content" class="form-control">
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <div class="d-flex gap-3">
+                <div class="input-group">
+                  <input type="number" class="form-control" >
+                  <span class="input-group-text">VND</span>
+                </div>
+
+                <div class="">
+                  <input type="date" class="form-control">
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-danger">Save</button>
+            </div>
+          </div>
+
+          <div class="">
+            <div class="d-flex gap-3 p-3 bg-danger-subtle justify-content-between my-2">
+              <div class="align-items-center gap-1 d-flex">
+                <label for="">Date </label>
+                <input type="date" class="form-control"> to
+                <input type="date" class="form-control">
+              </div>
+
+              <div class="d-flex gap-1 align-items-center">
+                <label for="">Total:</label>
+                <div class="input-group">
+                  <span type="number" class="form-control">12.090.000</span>
+                  <span class="input-group-text">VND</span>
+                </div>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="dropdown-item">Add money</a></li>
+                  <li><a href="#" class="dropdown-item">add money</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <table class="table table-hover table-success table-warning table-bordered">
+                <thead class="text-center">
+                  <tr class="">
+                    <th class="">No</th>
+                    <th class="">Date</th>
+                    <th class="">Action</th>
+                    <th class="">Money</th>
+                    <th class=""></th>
+                  </tr>
+                </thead>
+                <tbody class="">
+                  <tr class="">
+                    <td class="">1</td>
+                    <td class="">27/07/2023</td>
+                    <td class="">Go to the supermarket</td>
+                    <td>1.453.000 VND</td>
+                    <td class="d-flex">
+                      <button type="button" class="form-control">Edit</button>
+                      <button type="button" class="form-control">Delete</button>
+                    </td>
+                  </tr>
+
+                  <tr class="">
+                    <td class="">1</td>
+                    <td class="">27/07/2023</td>
+                    <td class="">Go to the supermarket</td>
+                    <td>1.453.000 VND</td>
+                    <td class="d-flex">
+                      <button type="button" class="form-control">Edit</button>
+                      <button type="button" class="form-control">Delete</button>
+                    </td>
+                  </tr>
+
+                  <tr class="">
+                    <td class="">1</td>
+                    <td class="">27/07/2023</td>
+                    <td class="">Go to the supermarket</td>
+                    <td>1.453.000 VND</td>
+                    <td class="d-flex">
+                      <button type="button" class="form-control">Edit</button>
+                      <button type="button" class="form-control">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 ">xyz</div>
+      </div>
     </section>
 
     <script src="js/knockout-3.5.1.js"></script>
