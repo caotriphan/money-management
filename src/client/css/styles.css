@@ -1,3 +1,14 @@
 ul>button {
   white-space: nowrap;
 }
+
+.x-btn {
+  top: 5px;
+  right: 5px;
+  border-radius: 50%;
+  background-color: red;
+  border: 1px solid red;
+  font-size: x-small;
+  box-shadow: 0 1px 2px 0 red;
+  color: #fff;
+}
