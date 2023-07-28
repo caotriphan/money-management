@@ -1,4 +1,4 @@
-class Mngt {
+class Transaction {
   constructor(number, content, amount, dateValue = new Date()) {
     this.content = content;
     this.amount = amount;
@@ -6,17 +6,12 @@ class Mngt {
   }
 }
 
-class PageMoMaViewModel {
-  moneyMngts = ko.observableArray([]);
-  moneymngt = ko.observable(new Mngt())
+class PageIndexViewModel {
+  transactions = ko.observableArray([1, 2, 3]);
 
   handleSave() {
-    const current = this.moneymngt();
-
-    if (current.number > 0) {
-
-    }
+    console.log('save')
   }
 }
 
-ko.applyBindings(new PageMoMaViewModel())
+ko.applyBindings(new PageIndexViewModel())
