@@ -1,4 +1,7 @@
-﻿namespace MoneyApi;
+﻿using Microsoft.EntityFrameworkCore;
+using MoneyApi.Db;
+
+namespace MoneyApi;
 
 public static class Development
 {
@@ -19,3 +22,23 @@ public static class Development
         return services;
     }
 }
+
+public class DesignTimeDbContextFactory
+{
+    public ApplicationDbContext CreateDbContext(string[] args)
+    {
+        var configurationBuilder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.Development.json", optional: true);
+
+        var configuration = configurationBuilder.Build();
+        var connectionString = configuration.GetConnectionString("DbConnection");
+
+        var dbContextOptionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+        dbContextOptionBuilder.UseSqlServer(connectionString);
+
+        return new ApplicationDbContext(dbContextOptionBuilder.Options);
+    }
+}
+
