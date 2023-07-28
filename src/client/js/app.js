@@ -7,11 +7,23 @@ class Transaction {
 }
 
 class PageIndexViewModel {
-  transactions = ko.observableArray([1, 2, 3]);
+  transactions = ko.observableArray([1, 2, 3].map(i => ({
+    transactionDate: formatDate(new Date(2023, i, i))
+  })));
+
+  renderTimeAgo() {
+    const nodes = document.querySelectorAll('.timeago');
+
+    // use render method to render nodes in real time
+    timeago.render(nodes);
+  }
 
   handleSave() {
     console.log('save')
   }
 }
+const vm = new PageIndexViewModel();
+ko.applyBindings(vm);
 
-ko.applyBindings(new PageIndexViewModel())
+// call this method after knockoutjs apply binding
+vm.renderTimeAgo();
