@@ -1,5 +1,40 @@
 # Money App
 
+## Prerequisite
+
+1. Download latest .NET SDK https://dotnet.microsoft.com/en-us/download
+2. Install docker
+
+## Installation
+
+### 1. Setup docker services
+
+```
+cd docs/
+docker compose up
+docker start sqlexpress # run this everytime start coding
+```
+
+### 2. Setup api
+
+```
+cp src/server/MoneyApi/appsettings.json src/server/MoneyApi/appsettings.Development.json
+
+# modify settings if needed
+
+# restore dotnet tools
+dotnet tool restore
+
+# apply migration
+dotnet ef database update -s src/server/moneyapi
+```
+
+### 3. Run the api
+
+```
+dotnet run --project src/server/MoneyApi/ --environment Development
+```
+
 ### migrations
 
 ```bash
