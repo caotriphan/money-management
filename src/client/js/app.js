@@ -1,21 +1,32 @@
 class Transaction {
-  constructor(number, content, amount, dateValue = new Date()) {
-    this.content = content;
+  constructor(id, note, amount, transactionDate = new Date()) {
+    this.id = id;
+    this.note = note;
     this.amount = amount;
-    this.dateValue = dateValue;
+    this.transactionDate = formatDate(transactionDate);
   }
 }
 
 class PageIndexViewModel {
-  transactions = ko.observableArray([1, 2, 3].map(i => ({
-    transactionDate: formatDate(new Date(2023, i, i))
-  })));
+  // transactions = ko.observableArray([1, 2, 3].map(i => ({
+  //   transactionDate: formatDate(new Date(2023, i, i))
+  // })));
+
+  transactions = ko.observableArray([])
+
+  loadTransactions() {
+    for (let i = 0; i < 10; i++) {
+      this.transactions.push(new Transaction(i, 'transaction' + i, i * 10000, new Date(2023, i, i)))
+    }
+  }
 
   renderTimeAgo() {
     const nodes = document.querySelectorAll('.timeago');
+    if (nodes.length) {
 
-    // use render method to render nodes in real time
-    timeago.render(nodes);
+      // use render method to render nodes in real time
+      timeago.render(nodes);
+    }
   }
 
   handleSave() {
@@ -23,6 +34,7 @@ class PageIndexViewModel {
   }
 }
 const vm = new PageIndexViewModel();
+vm.loadTransactions();
 ko.applyBindings(vm);
 
 // call this method after knockoutjs apply binding

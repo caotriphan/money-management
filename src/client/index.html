@@ -76,20 +76,19 @@
 
             <div data-bind="foreach: transactions">
               <div class="card shadow-sm mb-2">
-                <div class="card-footer">
-                  <!-- <div data-bind="text: number"></div> -->
-                  <div class="d-flex justify-content-between fw-bold">
-                    <div class="d-flex align-items-center">
+                <div class="card-body">
+                  <div class="align-items-center d-flex">
+                    <div class="d-flex flex-fill align-items-center">
                       <div class="fst-italic text-body-tertiary timeago"
                       style="font-size: smaller;min-width: 100px;"
                       data-bind="attr: { datetime: transactionDate }">12 days ago</div>
-                      <div >Buying st</div>
+                      <div data-bind="text: note">Buying st</div>
                     </div>
-                    <div>12.000.000 VND</div>
+                    <div class="me-3" data-bind="text: amount">12.000.000 VND</div>
+                    <button class="x-btn" >x</button>
                   </div>
                 </div>
 
-                <button class="position-absolute x-btn" >x</button>
               </div>
 
             </div>
