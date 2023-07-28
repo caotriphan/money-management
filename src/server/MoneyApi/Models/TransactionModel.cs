@@ -19,9 +19,8 @@ public record TransactionModel
         [Required]
         public decimal Amount { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        [Required]
         public DateTime TransactionDate { get; set; }
-        public DateTime? DeletedAt { get; set; }
     }
 }
 

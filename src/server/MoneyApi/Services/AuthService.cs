@@ -4,7 +4,7 @@ using MoneyApi.Extensions;
 
 namespace MoneyApi.Services;
 
-public record AccountValidationRecord(int Id, int UserId);
+public record AccountValidationRecord(int Id, string FullName);
 
 public interface IAuthService
 {
@@ -26,7 +26,7 @@ internal class AuthService : IAuthService
     {
         using var db = UseDb();
         var account = await db.Users.Where(u => u.Username == username)
-            .Select(u => new { u.Password, u.Id })
+            .Select(u => new { u.Password, u.Id, u.FullName })
             .SingleOrDefaultAsync();
 
         if (account == null || !account.Password.IsHashedMatches(password))
@@ -34,7 +34,7 @@ internal class AuthService : IAuthService
             return Result<AccountValidationRecord>.Fail("Invalid username or password");
         }
 
-        return Result<AccountValidationRecord>.Ok(new(account.Id, account.Id));
+        return Result<AccountValidationRecord>.Ok(new(account.Id, account.FullName));
     }
 }
 

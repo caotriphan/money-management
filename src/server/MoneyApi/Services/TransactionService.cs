@@ -19,13 +19,26 @@ public interface ITransactionService
 internal class TransactionService : ITransactionService
 {
     private readonly IDbContextFactory<ApplicationDbContext> dbContextFactory;
+    private readonly IUserResolver userResolver;
 
-    public TransactionService(IDbContextFactory<ApplicationDbContext> dbContextFactory)
+    public TransactionService(IDbContextFactory<ApplicationDbContext> dbContextFactory, IUserResolver userResolver)
     {
         this.dbContextFactory = dbContextFactory;
+        this.userResolver = userResolver;
     }
 
     private ApplicationDbContext UseDb() => dbContextFactory.CreateDbContext();
+    private UserRecord UseCurrentUser(bool required = true)
+    {
+        var user = userResolver.Resolve();
+        if (user == null || user.Id == 0)
+        {
+            if (required)
+                throw new Exception("User is not authorized");
+        }
+
+        return user!;
+    }
 
     public async Task<Result<TransactionModel>> CreateTransactionAsync(TransactionModel.NewTransaction request)
     {
@@ -34,6 +47,8 @@ internal class TransactionService : ITransactionService
             return Result<TransactionModel>.Fail("Amount must not be 0");
         }
 
+        var currentUser = UseCurrentUser();
+
         using var db = UseDb();
         var transaction = db.Transactions.Add(new Transaction
         {
@@ -41,7 +56,7 @@ internal class TransactionService : ITransactionService
             CreatedAt = DateTime.Now,
             Note = request.Note,
             TransactionDate = request.TransactionDate,
-            UserId = 0,
+            UserId = currentUser.Id,
         }).Entity;
 
         await db.SaveChangesAsync();
@@ -64,7 +79,9 @@ internal class TransactionService : ITransactionService
             return new List<TransactionModel>();
         }
 
-        var filter = PredicateBuilder.Create<Transaction>(x => x.TransactionDate >= from && x.TransactionDate <= to);
+        var currentUser = UseCurrentUser();
+
+        var filter = PredicateBuilder.Create<Transaction>(x => x.UserId == currentUser.Id && x.TransactionDate >= from && x.TransactionDate <= to);
         if (filterType.HasValue)
         {
             if (filterType == TransactionFilterType.In)
