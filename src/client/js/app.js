@@ -2,7 +2,7 @@ class Transaction {
   constructor(id, note, amount, transactionDate = new Date()) {
     this.id = id;
     this.note = note;
-    this.amount = amount;
+    this.amount = formatMoney(amount);
     this.transactionDate = formatDate(transactionDate);
     this.validNote$ = ko.observable(true);
     this.validAmount$ = ko.observable(true);
