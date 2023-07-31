@@ -78,7 +78,7 @@
             </div>
 
             <div data-bind="foreach: transactions$">
-              <div class="card shadow-sm mb-2">
+              <div class="card shadow-sm mb-2" data-bind="css: { 'bg-danger-subtle': amount < 0 }">
                 <div class="card-body">
                   <div class="align-items-center d-flex">
                     <div class="d-flex flex-fill align-items-center">
@@ -90,7 +90,7 @@
                       data-bind="attr: { datetime: transactionDate }"></div>
                       <div data-bind="text: note">Buying st</div>
                     </div>
-                    <div class="me-3" data-bind="text: amount">12.000.000 VND</div>
+                    <div class="me-3" data-bind="text: amountFormated">12.000.000 VND</div>
                     <button class="x-btn" data-bind="click: () => $root.handleDelete($data)">x</button>
                   </div>
                 </div>
