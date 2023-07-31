@@ -4,7 +4,13 @@ class Transaction {
     this.note = note;
     this.amount = amount;
     this.transactionDate = formatDate(transactionDate);
+    this.isInvalid = false;
   }
+
+  setInvalid(invalid) {
+    this.isInvalid = invalid;
+  }
+
 }
 
 class PageIndexViewModel {
@@ -34,9 +40,27 @@ class PageIndexViewModel {
     }
   }
 
+  validateTransaction() {
+    const { note, amount } = this.transaction;
+
+    if (!note || !amount) {
+      this.transaction.isInvalid = true;
+      return false;
+    }
+
+    this.transaction.isInvalid = false;
+    return true;
+  }
+
   handleSave() {
 
+    const valid = this.validateTransaction();
+    if (!valid) {
+      return;
+    }
+
     const { id, note, transactionDate, amount } = this.transaction;
+
     const current = new Transaction(id, note, amount, transactionDate);
 
     if (current.id > 0) {

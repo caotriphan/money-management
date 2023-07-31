@@ -27,7 +27,7 @@
             <div class="mb-2">
               <input type="hidden" data-bind="value: transaction.id">
               <input type="text" placeholder="Enter content" class="form-control"
-              data-bind="value: transaction.note"
+              data-bind="value: transaction.note, css: { 'is-invalid': transaction.isInvalid }"
               >
             </div>
 
