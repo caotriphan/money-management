@@ -25,21 +25,21 @@
         <div class="col-sm-8 border-end">
           <div class="mb-5 mt-2">
             <div class="mb-2">
-              <input type="hidden" data-bind="value: editingTransaction().id">
+              <input type="hidden" data-bind="value: transaction.id">
               <input type="text" placeholder="Enter content" class="form-control"
-              data-bind="value: editingTransaction().note"
+              data-bind="value: transaction.note"
               >
             </div>
 
             <div class="d-flex justify-content-between">
               <div class="d-flex gap-3">
                 <div class="input-group">
-                  <input type="number" class="form-control" data-bind="value: editingTransaction().amount">
+                  <input type="number" class="form-control" data-bind="value: transaction.amount">
                   <span class="input-group-text">VND</span>
                 </div>
 
                 <div class="">
-                  <input type="datetime-local" class="form-control" data-bind="value: editingTransaction().transactionDate">
+                  <input type="datetime-local" class="form-control" data-bind="value: transaction.transactionDate">
                 </div>
               </div>
 
@@ -76,7 +76,7 @@
               </div>
             </div>
 
-            <div data-bind="foreach: transactions">
+            <div data-bind="foreach: transactions$">
               <div class="card shadow-sm mb-2">
                 <div class="card-body">
                   <div class="align-items-center d-flex">
@@ -86,11 +86,11 @@
                       </div>
                       <div class="fst-italic text-body-tertiary timeago"
                       style="font-size: smaller;min-width: 100px;"
-                      data-bind="attr: { datetime: transactionDate }">12 days ago</div>
+                      data-bind="attr: { datetime: transactionDate }"></div>
                       <div data-bind="text: note">Buying st</div>
                     </div>
                     <div class="me-3" data-bind="text: amount">12.000.000 VND</div>
-                    <button class="x-btn" >x</button>
+                    <button class="x-btn" data-bind="click: () => $root.handleDelete($data)">x</button>
                   </div>
                 </div>
 
