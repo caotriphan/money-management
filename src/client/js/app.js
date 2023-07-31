@@ -4,13 +4,9 @@ class Transaction {
     this.note = note;
     this.amount = amount;
     this.transactionDate = formatDate(transactionDate);
-    this.isInvalid = false;
+    this.validNote$ = ko.observable(true);
+    this.validAmount$ = ko.observable(true);
   }
-
-  setInvalid(invalid) {
-    this.isInvalid = invalid;
-  }
-
 }
 
 class PageIndexViewModel {
@@ -43,12 +39,13 @@ class PageIndexViewModel {
   validateTransaction() {
     const { note, amount } = this.transaction;
 
+    this.transaction.validNote$(!!note);
+    this.transaction.validAmount$(!!amount);
+
     if (!note || !amount) {
-      this.transaction.isInvalid = true;
       return false;
     }
 
-    this.transaction.isInvalid = false;
     return true;
   }
 

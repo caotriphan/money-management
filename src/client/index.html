@@ -27,14 +27,15 @@
             <div class="mb-2">
               <input type="hidden" data-bind="value: transaction.id">
               <input type="text" placeholder="Enter content" class="form-control"
-              data-bind="value: transaction.note, css: { 'is-invalid': transaction.isInvalid }"
+              data-bind="value: transaction.note, css: { 'is-invalid': !transaction.validNote$() }"
               >
             </div>
 
             <div class="d-flex justify-content-between">
               <div class="d-flex gap-3">
                 <div class="input-group">
-                  <input type="number" class="form-control" data-bind="value: transaction.amount">
+                  <input type="number" class="form-control"
+                  data-bind="value: transaction.amount, css: { 'is-invalid': !transaction.validAmount$() }">
                   <span class="input-group-text">VND</span>
                 </div>
 
