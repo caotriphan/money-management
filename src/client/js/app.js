@@ -7,6 +7,10 @@ class Transaction {
     this.validNote$ = ko.observable(true);
     this.validAmount$ = ko.observable(true);
   }
+
+  get isValid() {
+    return this.validNote$() && this.validAmount$();
+  }
 }
 
 class PageIndexViewModel {
@@ -42,11 +46,7 @@ class PageIndexViewModel {
     this.transaction.validNote$(!!note);
     this.transaction.validAmount$(!!amount);
 
-    if (!note || !amount) {
-      return false;
-    }
-
-    return true;
+    return this.transaction.isValid;
   }
 
   handleSave() {
