@@ -8,9 +8,6 @@ class Transaction {
 }
 
 class PageIndexViewModel {
-  // transactions = ko.observableArray([1, 2, 3].map(i => ({
-  //   transactionDate: formatDate(new Date(2023, i, i))
-  // })));
   editingTransaction$ = ko.observable(new Transaction(0));
   transactions$ = ko.observableArray([])
 
@@ -68,12 +65,6 @@ class PageIndexViewModel {
     this.transactions$.remove((s) => s.id === id)
   }
 
-  handleSearch() {
-    let startDay = ko.observable();
-    let endDay = ko.observable();
-
-
-  }
 }
 
 const vm = new PageIndexViewModel();
