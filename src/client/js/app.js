@@ -26,10 +26,15 @@ class PageIndexViewModel {
     this.editingTransaction$(value);
   }
 
-  loadTransactions() {
-    for (let i = 0; i < 10; i++) {
-      this.transactions$.push(new Transaction(i, 'transaction' + i, i * 10000, new Date(2023, i, i)))
+  async loadTransactions() {
+    this.transactions$.removeAll();
+
+    const trans = await getTransactions(); // [{}, {}]
+    for (let t of trans) {
+      this.transactions$.push(new Transaction(t.id, t.note, t.amount, t.transactionDate));
     }
+
+    vm.renderTimeAgo();
   }
 
   renderTimeAgo() {
@@ -50,8 +55,7 @@ class PageIndexViewModel {
     return this.transaction.isValid;
   }
 
-  handleSave() {
-
+  async handleSave() {
     const valid = this.validateTransaction();
     if (!valid) {
       return;
@@ -65,11 +69,13 @@ class PageIndexViewModel {
       let selected = this.transactions$().find(s => s.id === current.id)
       this.transactions$.replace(selected, current)
     } else {
-      const maxIdTransaction = this.transactions$()
-        .sort((a, b) => a.id - b.id)
-        .at(-1);
-      current.id = maxIdTransaction.id + 1;
-      this.transactions$.unshift(current);
+      // const maxIdTransaction = this.transactions$()
+      //   .sort((a, b) => a.id - b.id)
+      //   .at(-1);
+      // current.id = maxIdTransaction.id + 1;
+      // this.transactions$.unshift(current);
+      await saveTransaction(note, amount, formatDate(transactionDate, 'YYYY-MM-DDThh:mm:ss'));
+      await this.loadTransactions();
     }
 
     this.transaction = new Transaction();
@@ -94,4 +100,3 @@ vm.loadTransactions();
 ko.applyBindings(vm);
 
 // call this method after knockoutjs apply binding
-vm.renderTimeAgo();
