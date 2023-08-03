@@ -5,3 +5,13 @@ body {
 .login-form {
   width: 400px;
 }
+
+a {
+  text-decoration: none;
+}
+
+.brand {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
