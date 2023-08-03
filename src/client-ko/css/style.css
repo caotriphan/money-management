@@ -61,3 +61,11 @@ a {
   transform: translateX(0);
   opacity: 1;
 }
+
+.transaction-form {
+  grid-template-columns: 1fr minmax(auto,92px);
+}
+
+.ratio-1 {
+  aspect-ratio: 1/1;
+}
