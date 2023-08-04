@@ -18,6 +18,9 @@ docker start sqlexpress # run this everytime start coding
 ### 2. Setup api
 
 ```
+# assume you're in /docs
+# back to root
+cd ../
 cp src/server/MoneyApi/appsettings.json src/server/MoneyApi/appsettings.Development.json
 
 # modify settings if needed
