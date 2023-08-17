@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money App</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="card mx-auto shadow my-3" style="width: 600px;">
+    <h1 class="text-center fs-3 mb-0 py-3 rounded-2 bg-primary-subtle">Money App</h1>
+
+    <form class="card-body">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Enter Username" data-bind="value: username$">
+      </div>
+
+      <div class="mb-3">
+        <input type="password" class="form-control" placeholder="Enter Password" data-bind="value: password$">
+      </div>
+
+      <div class="mb-3">
+        <button type="button" class="btn btn-primary w-100" data-bind="click: handleLogin">Login</button>
+      </div>
+
+      <div class="alert alert-danger align-items-center d-flex mb-0 mt-3" role="alert" data-bind="css: {'d-flex': hasError$, 'd-none': !hasError$()}">
+        <p>Username or Password is incorrect.</p>
+      </div>
+    </form>
+  </div>
+
+  <script src="./js/const.js"></script>
+  <script src="./js/knockout-3.5.1.js"></script>
+  <script src="./js/login.viewmodel.js"></script>
+</body>
+</html>
