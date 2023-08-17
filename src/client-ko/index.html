@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Money App</title>
+  <link rel="stylesheet"
+        href="./css/bootstrap.css">
+  <link rel="stylesheet"
+        href="./font/bootstrap-icons.css">
+  <link rel="stylesheet"
+        href="./css/style.css">
+</head>
+
+<body>
+  <header class="bg-light">
+    <div class="align-items-center container d-flex py-1">
+      <a href="#"
+         class="brand">Money App</a>
+      <div class="flex-fill text-end">
+        <span>Hi, <span data-bind="text: username$"></span></span>
+        <button type="button" class="btn btn-link text-decoration-none" data-bind="click: handleLogout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container pb-3">
+      <div class="d-flex">
+        <div class="flex-fill">
+          <div class="border-0 card mx-auto my-4"
+               style="max-width: 650px;">
+            <form class="bg-info border-0 card-body gap-3 p-4 rounded shadow-sm transaction-form"
+                  style="max-width: 650px;">
+
+              <div class="input-group">
+                <input type="text"
+                       class="form-control w-75"
+                       placeholder="What're you doing?"><input type="text"
+                       class="form-control w-25"
+                       placeholder="What's amount?">
+              </div>
+            </form>
+          </div>
+
+          <div class="transaction-list mx-auto"
+               style="max-width: 650px;"
+               data-bind="foreach: transactions$">
+            <div
+                 class="card mt-2 overflow-hidden position-relative transaction">
+              <div class="d-flex align-items-center card-body">
+                <div class="flex-fill">
+                  <div class="small"
+                       style="color:#aaa;">2 days ago</div>
+                  <p class="m-0">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                  </p>
+                </div>
+                <div class="oneline px-2">50.000 vnd</div>
+                <button type="button"
+                        class="btn btn-danger button-delete rounded-circle d-flex align-items-center justify-content-center p-0 position-absolute end-0 me-3"
+                        style="width:24px;height:24px;min-width:24px;">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>report</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/knockout-3.5.1.js"></script>
+  <script src="./js/jwt-decode.js"></script>
+  <script src="./js/lib.js"></script>
+  <script src="./js/index.viewmodel.js"></script>
+</body>
+
+</html>
