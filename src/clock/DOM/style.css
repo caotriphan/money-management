@@ -21,3 +21,15 @@ padding: 1rem;
 border-radius: 8px;
 background: #eee;
 }
+
+.button{
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn {
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 8px;
+}
