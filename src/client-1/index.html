@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Money App</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -51,9 +51,9 @@
           class="card mt-2 overflow-hidden position-relative transaction">
         <div class="d-flex align-items-center card-body">
           <div class="flex-fill">
-            <div class="small"
+            <div class="small timeago"
               style="color:#aaa;"
-              data-bind="text: smday"
+              data-bind="text: smday, attr: { datetime: smday }"
               >2 days ago</div>
 
             <p class="m-0" data-bind="text: spendfor">
@@ -65,7 +65,8 @@
 
           <button type="button"
                class="btn btn-danger button-delete rounded-circle d-flex align-items-center justify-content-center p-0 position-absolute end-0 me-3"
-               style="width:24px;height:24px;min-width:24px;">x
+               style="width:24px;height:24px;min-width:24px;"
+               data-bind="">x
           </button>
         </div>
       </div>
@@ -75,9 +76,11 @@
 
 
   <script src="./js/knockout-3.5.1.js"></script>
+  <script src="./js/lib.js"></script>
+  <script src="./js/dayjs.min.js"></script>
+  <script src="./js/timeago.min.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/jwt-decode.js"></script>
-  <script src="./js/lib.js"></script>
   <script src="./js/const.js"></script>
   <script src="./js/index.viewmodel.js"></script>
 </body>

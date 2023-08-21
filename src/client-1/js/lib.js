@@ -18,3 +18,16 @@ const getAuthenticatedUser = () => {
 const isExpired = (exp) => {
   return Date.now() >= exp * 1000;
 }
+
+const formatDateString = (s) => {
+  const date = new Date(s);
+  return dayjs(date).format('YYYY-MM-DD HH-mm-ss')
+}
+
+const formatDate = (date, format = 'YYYY-MM-DD HH-mm-ss') => {
+  return dayjs(date).format(format)
+}
+
+const formatMoney = (value) => {
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value)
+}

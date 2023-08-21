@@ -6,9 +6,10 @@ class Transaction{
     amount,
   ) {
     this.id = id;
-    this.smday =smday;
+    this.smday = formatDate(smday);
     this.spendfor = spendfor;
     this.amount = amount;
+    this.amountFormated = formatMoney(amount);
   }
 }
 
@@ -23,6 +24,47 @@ class MoneyAppViewModel {
     localStorage.removeItem('token')
     window.location.href = 'login.html'
   }
+
+  async onLoad() {
+    // reset value
+    this.transactions$([]);
+
+    const resp = await fetch(baseUrl + 'transactions?from=2023-01-01&to=9999-01-01', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    });
+    const json = await resp.json(); // []
+
+    const transactions = json.map(i => ({
+      id: i.id,
+      smday: i.transactionDate,
+      spendfor: i.note,
+      amount: i.amount,
+    }))
+
+    this.transactions$(transactions);
+    vm.renderTimeAgo();
+
+    // for (let i of json) {
+    //   const tran = {
+    //     id: i.id,
+    //     smday: i.transactionDate,
+    //     spendfor: i.note,
+    //     amount: i.amount,
+    //   }
+
+    //   this.transactions$.push(tran);
+    // }
+  }
+
+  renderTimeAgo(){
+    const nodes = document.querySelectorAll('.timeago');
+
+    if(nodes.length){
+     timeago.render(nodes)
+    }
+ }
 
   async handleSave(){
     // const current = this.transaction$();
@@ -53,7 +95,6 @@ class MoneyAppViewModel {
     })
 
     await this.onLoad();
-
   }
 
   authenticateUser(){
@@ -64,39 +105,6 @@ class MoneyAppViewModel {
       this.username$(user.username)
     }
   }
-
-  async onLoad() {
-    // reset value
-    this.transactions$([]);
-
-    const resp = await fetch(baseUrl + 'transactions?from=2023-01-01&to=9999-01-01', {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }
-    });
-    const json = await resp.json(); // []
-
-    const transactions = json.map(i => ({
-      id: i.id,
-      smday: i.transactionDate,
-      spendfor: i.note,
-      amount: i.amount,
-    }))
-
-    this.transactions$(transactions);
-
-    // for (let i of json) {
-    //   const tran = {
-    //     id: i.id,
-    //     smday: i.transactionDate,
-    //     spendfor: i.note,
-    //     amount: i.amount,
-    //   }
-
-    //   this.transactions$.push(tran);
-    // }
-  }
-
 }
 
 const vm = new MoneyAppViewModel();
