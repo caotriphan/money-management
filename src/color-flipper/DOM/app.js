@@ -9,7 +9,7 @@ function renderColor(){
   color.textContent = colors[randomNumber];
 }
 
-btn.addEventListener('click', renderColor())
+btn.addEventListener('click', renderColor)
 
 function getRandomNumber(){
   return Math.floor(Math.random() * colors.length);
