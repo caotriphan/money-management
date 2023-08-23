@@ -1,0 +1,48 @@
+:root{
+  --danger-color: #dc3545;
+}
+
+body{
+  background-color: #eee;
+}
+
+.oneline{
+  white-space: nowrap;
+}
+
+.transaction .btn-danger {
+  opacity: 0;
+}
+
+.transaction:hover .btn-danger {
+  opacity: 1;
+}
+
+.transaction:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  background: linear-gradient( to left, rgba(0,0,0,.3), rgba(0,0,0,.1), transparent);
+  opacity: .3;
+  border-radius: 0 5px 5px 0;
+  transform: translateX(100%);
+  transition: .25s ease;
+}
+
+.transaction .button-delete{
+  z-index: 2;
+  transition: .25s ease;
+  transform: translateX(100%);
+}
+
+.transaction:hover .button-delete{
+  transform: translateX(0);
+}
+
+.ratio{
+  aspect-ratio: 1/1;
+}

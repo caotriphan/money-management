@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COLOR FLIPPER</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-bind="style: { 'backgroundColor': color$ }">
+
+  <nav>
+    <div class="nav-center">
+      <h4>Color flipper</h4>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html">Simple</a>
+        </li>
+
+        <li>
+          <a href="index.html">Hex</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+        <h2>Background color: <span class="color" data-bind="text: color$">
+          #f1f5f8
+        </span></h2>
+      </div>
+
+      <div class="button">
+        <button class="btn btn-hero" id="btn" data-bind="click: renderColor">Click me</button>
+      </div>
+  </main>
+
+  <script src="knockout-3.5.1.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
